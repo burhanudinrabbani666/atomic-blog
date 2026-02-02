@@ -6,7 +6,7 @@ This section explains a subtle but powerful React optimization pattern involving
 
 Why does **example 1** feel faster than **example 2**, even though both render the same `SlowComponent`?
 
-## Example 1
+**Example 1**
 
 ```jsx
 function Counter({ children }) {
@@ -31,7 +31,7 @@ export default function Test() {
 }
 ```
 
-## Example 2
+**Example 2**
 
 ```jsx
 export default function Test() {
@@ -50,7 +50,7 @@ export default function Test() {
 
 The difference is **where the state lives** and **how React treats children**.
 
-### In Example 1
+**In Example 1**
 
 - The `count` state lives **inside** the `Counter` component.
 - `SlowComponent` is passed as `children`.
@@ -60,7 +60,7 @@ The difference is **where the state lives** and **how React treats children**.
 
 ✅ Result: Clicking the button feels fast.
 
-### In Example 2
+**In Example 2**
 
 - The `count` state lives in the `Test` component.
 - `SlowComponent` is rendered **directly inside `Test`**.
@@ -95,11 +95,5 @@ This trick works best when:
 - A component is slow
 - It does not depend on state
 - You can safely pass it as `children`
-
-## What’s Next?
-
-This optimization has limits. When props change, or when children depend on state, this trick alone is not enough.
-
-➡️ **Next: Understanding `memo`**
 
 [Next: Understanding memo](./04-understanding-memo.md)
