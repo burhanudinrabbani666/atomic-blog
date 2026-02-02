@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 function createRandomPost() {
@@ -41,10 +41,13 @@ function App() {
     [isFakeDark],
   );
 
-  const archiveFunction = {
-    show: false,
-    title: "post archive in addition to main hooks",
-  };
+  const archiveFunction = useMemo(() => {
+    return {
+      show: false,
+      title: `post archive in addition to ${posts.length} main hooks`,
+    };
+  }, [posts.length]);
+  // Empty array dependenciees make only one make once
 
   return (
     <section>
